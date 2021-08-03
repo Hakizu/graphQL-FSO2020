@@ -1,11 +1,21 @@
   
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { ALL_AUTHORS } from '../queries'
+import { useQuery } from '@apollo/client'
 
 const Authors = (props) => {
+  const result = useQuery(ALL_AUTHORS)
+  const [authors, setAuthors] = useState([])
+
+  useEffect(() => {
+    if (result?.data?.allAuthors) {
+      setAuthors(result.data.allAuthors)
+    }
+  }, [result])
+
   if (!props.show) {
     return null
   }
-  const authors = []
 
   return (
     <div>
