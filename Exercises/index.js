@@ -137,7 +137,7 @@ const resolvers = {
       const genre = args.genre
 
       if (!author && !genre) {
-        return null
+        return books
       }
 
       if (!author && genre) {
